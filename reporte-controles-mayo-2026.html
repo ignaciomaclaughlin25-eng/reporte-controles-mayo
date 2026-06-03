@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte Mensual · Controles · Mayo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #0D1B2A;
+    --azul-medio: #1B263B;
+    --blanco: #FFFFFF;
+    --gris: #F4F6F8;
+    --acento: #2E6BE6;
+    --acento-claro: #5B8FF9;
+    --texto-suave: #8896A5;
+    --borde: #E2E8F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gris);
+    color: var(--azul);
+    font-size: 14px;
+  }
+
+  .header {
+    background: var(--azul);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-logo img {
+    height: 48px;
+  }
+
+  .header-info { text-align: right; color: var(--blanco); }
+
+  .header-info .periodo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  .header-info .cliente {
+    font-size: 13px;
+    color: var(--acento-claro);
+    margin-top: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .hero-strip {
+    background: var(--azul-medio);
+    padding: 28px 60px;
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .hero-kpi {
+    flex: 1;
+    padding: 0 30px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-kpi:last-child { border-right: none; }
+  .hero-kpi:first-child { padding-left: 0; }
+
+  .hero-kpi .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--acento-claro);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+
+  .hero-kpi .value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--blanco);
+    line-height: 1;
+  }
+
+  .hero-kpi .sub {
+    font-size: 11px;
+    color: var(--texto-suave);
+  }
+
+  .main { padding: 40px 60px; display: flex; flex-direction: column; gap: 32px; }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--acento);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borde);
+  }
+
+  .campaign-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(13,27,42,0.07);
+  }
+
+  .campaign-card .card-header {
+    background: var(--azul);
+    padding: 16px 20px;
+  }
+
+  .campaign-card .card-header .tag {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--acento-claro);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .campaign-card .card-header .camp-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--blanco);
+    line-height: 1.3;
+  }
+
+  .campaign-card .card-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--gris);
+  }
+
+  .metric-row:last-child { border-bottom: none; }
+
+  .metric-row .metric-label {
+    font-size: 12px;
+    color: var(--texto-suave);
+    font-weight: 500;
+  }
+
+  .metric-row .metric-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--azul);
+  }
+
+  .metric-row .metric-value.highlight {
+    color: var(--acento);
+    font-size: 15px;
+  }
+
+  .table-wrap {
+    background: var(--blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(13,27,42,0.07);
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  thead tr { background: var(--azul); }
+
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--acento-claro);
+    white-space: nowrap;
+  }
+
+  tbody tr { border-bottom: 1px solid var(--gris); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--gris); }
+
+  tbody td { padding: 11px 16px; font-size: 13px; color: var(--azul); }
+
+  tbody td.td-name {
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+  }
+
+  tbody td.td-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-buenos-aires { background: #EBF0FF; color: var(--acento); }
+  .badge-interior { background: #E6F4EA; color: #1E7E34; }
+  .badge-minorista { background: #FFF3E0; color: #E65100; }
+
+  .footer {
+    background: var(--azul);
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .footer img { height: 30px; opacity: 0.8; }
+
+  .footer p { font-size: 11px; color: var(--texto-suave); }
+
+  @media print {
+    body { background: white; }
+    .main { padding: 30px 40px; }
+    .header, .hero-strip, .footer { padding-left: 40px; padding-right: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo"><img src="MLBP_blanco_transparente.png" alt="MLBP"></div>
+  <div class="header-info">
+    <div class="periodo">Mayo 2026</div>
+    <div class="cliente">Reporte Mensual · Controles</div>
+  </div>
+</div>
+
+<!-- HERO KPIs -->
+<!-- Inversión total: 135797.07 + 93833.27 = 229630.34 -->
+<!-- Alcance: 53948 + 31872 = 85820 -->
+<!-- Impresiones: 88908 + 49353 = 138261 -->
+<!-- Conversaciones: 321 + 167 = 488 -->
+<div class="hero-strip">
+  <div class="hero-kpi">
+    <div class="label">Inversión Total</div>
+    <div class="value">$229.630</div>
+    <div class="sub">ARS · Campañas activas</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="label">Alcance Total</div>
+    <div class="value">85.820</div>
+    <div class="sub">personas únicas</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="label">Impresiones</div>
+    <div class="value">138.261</div>
+    <div class="sub">total del período</div>
+  </div>
+  <div class="hero-kpi">
+    <div class="label">Conversaciones Iniciadas</div>
+    <div class="value">488</div>
+    <div class="sub">Mayorista + Minorista</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- MAYORISTA -->
+  <div>
+    <div class="section-title">Campaña Mensajes · Mayorista</div>
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:20px;">
+      <div class="campaign-card">
+        <div class="card-header">
+          <div class="tag">Mensajes WhatsApp</div>
+          <div class="camp-name">Mayorista<br>Prospecting</div>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Inversión</span>
+            <span class="metric-value">$135.797</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Conversaciones</span>
+            <span class="metric-value highlight">321</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Costo x conv.</span>
+            <span class="metric-value">$423,04</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Alcance</span>
+            <span class="metric-value">53.948</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Frecuencia</span>
+            <span class="metric-value">1,65</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">CPM</span>
+            <span class="metric-value">$1.527</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ad Set</th>
+                <th>Región</th>
+                <th style="text-align:right">Inversión</th>
+                <th style="text-align:right">Alcance</th>
+                <th style="text-align:right">Conversaciones</th>
+                <th style="text-align:right">Costo x conv.</th>
+                <th style="text-align:right">CPM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-name">Intereses – Buenos Aires</td>
+                <td><span class="badge badge-buenos-aires">Buenos Aires</span></td>
+                <td class="td-num">$90.466</td>
+                <td class="td-num">32.195</td>
+                <td class="td-num">239</td>
+                <td class="td-num">$378,52</td>
+                <td class="td-num">$1.628</td>
+              </tr>
+              <tr>
+                <td class="td-name">Intereses – Interior</td>
+                <td><span class="badge badge-interior">Interior</span></td>
+                <td class="td-num">$45.331</td>
+                <td class="td-num">24.544</td>
+                <td class="td-num">82</td>
+                <td class="td-num">$552,81</td>
+                <td class="td-num">$1.360</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:10px; background:#EBF0FF; border-radius:8px; padding:12px 16px; font-size:12px; color:#1B263B;">
+          <strong>Buenos Aires sigue siendo el segmento más eficiente</strong>, con el 74% de las conversaciones mayoristas y un costo por conversación 32% menor que Interior. La frecuencia de 1.65 indica audiencia fresca y buen margen de escala.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINORISTA -->
+  <!-- Controles TV: $43.735, 133 conv, $328,84, alcance 21.368, frec 1.45, CPM $1.407 -->
+  <!-- Controles Portón: $43.065, 32 conv, $1.345,80, alcance 12.203, frec 1.30, CPM $2.723 -->
+  <!-- Total minorista (sin RFID): $86.801, 165 conv -->
+  <div>
+    <div class="section-title">Campaña Mensajes · Minorista</div>
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:20px;">
+      <div class="campaign-card">
+        <div class="card-header">
+          <div class="tag">Mensajes WhatsApp</div>
+          <div class="camp-name">Minorista<br>Prospecting</div>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Inversión</span>
+            <span class="metric-value">$93.833</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Conversaciones</span>
+            <span class="metric-value highlight">167</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Costo x conv.</span>
+            <span class="metric-value">$561,88</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Alcance</span>
+            <span class="metric-value">31.872</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Frecuencia</span>
+            <span class="metric-value">1,55</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">CPM</span>
+            <span class="metric-value">$1.901</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ad Set · Producto</th>
+                <th>Tipo</th>
+                <th style="text-align:right">Inversión</th>
+                <th style="text-align:right">Alcance</th>
+                <th style="text-align:right">Conversaciones</th>
+                <th style="text-align:right">Costo x conv.</th>
+                <th style="text-align:right">CPM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-name">Controles TV</td>
+                <td><span class="badge badge-minorista">Minorista</span></td>
+                <td class="td-num">$43.736</td>
+                <td class="td-num">21.368</td>
+                <td class="td-num">133</td>
+                <td class="td-num">$328,84</td>
+                <td class="td-num">$1.407</td>
+              </tr>
+              <tr>
+                <td class="td-name">Controles Portón</td>
+                <td><span class="badge badge-minorista">Minorista</span></td>
+                <td class="td-num">$43.066</td>
+                <td class="td-num">12.203</td>
+                <td class="td-num">32</td>
+                <td class="td-num">$1.345,80</td>
+                <td class="td-num">$2.723</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:10px; background:#FFF3E0; border-radius:8px; padding:12px 16px; font-size:12px; color:#1B263B;">
+          <strong>Controles TV concentra el 80% de las conversaciones minoristas</strong> con inversión similar a Portón. Con la baja de presupuesto general y el apagado de RFID, el foco quedó bien concentrado en los dos productos activos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <img src="MLBP_blanco_transparente.png" alt="MLBP">
+  <p>Período: 1 al 31 de mayo de 2026 · Datos: Meta Ads Manager · Informe preparado por MLBP</p>
+</div>
+
+</body>
+</html>
